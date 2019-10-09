@@ -1,0 +1,18 @@
+
+.App {
+    padding: 10px;
+}
+
+textarea {
+    padding: 4px 6px;
+    border: 1px solid #ccc ;
+    font-size: 14px;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+button {
+    margin-top: 20px;
+}
