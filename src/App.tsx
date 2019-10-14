@@ -3,7 +3,7 @@ import './App.css'
 import spider from "./spider"
 
 const App: React.FC = () => {
-    const [ text , setText ] = useState('');
+    const [ text , setText ] = useState('var a = 2;');
     const go2Transform = useCallback( () => {
             spider( text )
         } , [ text ] )

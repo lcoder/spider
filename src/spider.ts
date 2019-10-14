@@ -1,7 +1,4 @@
+import scanner from "./lexeme/index"
 
-const spider = ( text: string ) => {
-    console.log( text )
-    return null
-}
 
-export default spider;
+export default scanner;
