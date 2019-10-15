@@ -6,7 +6,7 @@
 
 # 原理
 
-通过状态转换图解析字符串，生成词法单元Token的线性结构
+通过状态转换图(transition diagram)解析字符串，生成词法单元Token的线性结构
 
 暂支持识别：
 
@@ -16,7 +16,14 @@
 - 赋值
 - 比较运算符
 
+
+状态转换图见：`./docs/images`目录
+
 # 开发
 
 - 安装依赖:`yarn`
 - 启动：`yarn start`
+
+新增token识别：
+
+在`src/lexeme/td-analysisi`添加 `新toke的状态转换图`的代码实现
