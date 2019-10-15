@@ -1,8 +1,8 @@
-import React , { useState , useCallback } from 'react'
+import React , { useState , useCallback, useEffect } from 'react'
 import './App.css'
 import spider from "./spider"
 
-const defaultTxt = `var a = 2;`
+const defaultTxt = `var a = 1;`
 
 const App: React.FC = () => {
     const [ text , setText ] = useState(defaultTxt);
@@ -15,7 +15,9 @@ const App: React.FC = () => {
             const value = (event.target as HTMLInputElement).value
             setText( value )
         } , [] )
-    
+    useEffect( () => {
+        go2Transform()
+    } , [ go2Transform ] )
     return (
         <div className="App">
             <div>

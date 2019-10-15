@@ -14,7 +14,7 @@ export default class Identifier {
     getToken( current: string , nextChar: string | Symbol ) {
         const { state } = this
         const char: string = nextChar === EOF ? '' : ( nextChar as string )
-        
+        // console.log( state , current , nextChar )
         switch ( state ) {
             case 0:
                 if ( alphaReg.test( char ) ) {
@@ -23,12 +23,16 @@ export default class Identifier {
                 break
             case 1:
             case 2:
-                if ( alphaNumReg.test( char ) ) {
+                const isWord = alphaNumReg.test( char )
+                // console.log( current , nextChar , isWord )
+                if ( isWord ) {
                     this.state = 2
                 } else {
                     const ifKeyWord = KeyWords.includes( current )
-                    const notKeyWord = !ifKeyWord
-                    if ( notKeyWord ) {
+                    // console.log( ifKeyWord , current )
+                    if ( ifKeyWord ) {
+                        this.reset()
+                    } else {
                         this.reset()
                         return new Token( TokenType.Identifier , current )
                     }

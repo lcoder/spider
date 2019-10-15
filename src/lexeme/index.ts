@@ -25,6 +25,7 @@ const scanner = ( text: string ) => {
         }
         if ( flag ) {
             word = ''
+            tdAnalysis.forEach( td => td.reset() )
         }
         if ( typeof char === 'string' ) {
             const charCode: number | undefined = char.codePointAt( 0 )
