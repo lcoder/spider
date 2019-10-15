@@ -6,7 +6,7 @@ const numReg = /\d/
 
 const dotReg = /\./
 
-export default class Number {
+export default class Numbers {
     state: number = 0
     reset(){
         this.state = 0
@@ -22,7 +22,7 @@ export default class Number {
                 this.reset()
                 return new Token( TokenType.Number , current )
             }
-
+        // console.log( current , nextChar )
         switch( state ) {
             // 初始化
             case 0:
@@ -59,6 +59,7 @@ export default class Number {
                 } else {
                     return returnToken()
                 }
+                break
             // 指数
             case 16:
                 if ( ifPosNeg ) {
