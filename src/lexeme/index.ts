@@ -1,12 +1,13 @@
 import ReadBuffer from "./read-buffer"
 import tdAnalysis from "./td-analysis/index"
 import { isWhitespace } from "./whitespace"
+import { EOF } from "./types"
 
 
 const scanner = ( text: string ) => {
     const read = new ReadBuffer( text )
     const tokens = []
-    let char: string | undefined
+    let char: string | undefined | Symbol
     let word: string = ''
 
     while( (char = read.next()) !== undefined ) {
@@ -25,13 +26,18 @@ const scanner = ( text: string ) => {
         if ( flag ) {
             word = ''
         }
-        const charCode: number | undefined = char.codePointAt( 0 )
-        const ifWhiteSpace = isWhitespace( charCode as number )
-        if ( ifWhiteSpace ) {
-            continue;
+        if ( typeof char === 'string' ) {
+            const charCode: number | undefined = char.codePointAt( 0 )
+            const ifWhiteSpace = isWhitespace( charCode as number )
+            if ( ifWhiteSpace ) {
+                continue;
+            }
         }
-        word += char
+        if ( char !== EOF ) {
+            word += char
+        }
     }
+    read.reset()
     console.log( tokens )
 }
 

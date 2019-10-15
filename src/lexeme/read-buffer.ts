@@ -1,5 +1,5 @@
 
-
+import { EOF } from "./types"
 
 export default class ReadBuffer {
     state: number = 0
@@ -12,11 +12,16 @@ export default class ReadBuffer {
         this.text = text
     }
     // 读取下一个字符
-    next(): string | undefined {
+    next(): string | Symbol | undefined {
         const size = this.text.length
         const { forward , text } = this
+        const end = forward === ( size - 1 )
+        if ( end ) {
+            this.forward++
+            return EOF
+        }
         const char = text[ forward ]
-        const overflow = forward >= ( size - 1 )
+        const overflow = forward > ( size - 1 )
         const target = overflow ? undefined : char
         if ( overflow === false ) {
             this.forward++
@@ -26,6 +31,11 @@ export default class ReadBuffer {
     // 成功，移动start
     forwardWithStart(){
         this.start = this.forward
+    }
+    reset(){
+        this.start = 0
+        this.forward = 0
+        this.text = ''
     }
     // 失败，报错
 

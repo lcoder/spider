@@ -46,13 +46,16 @@ export const Separators = [
     '}' ,
 ]
 
+export const EOF = Symbol('EOF')
 
 export enum TokenType {
     Keyword,        // 关键字 var
     Identifier ,    // 标识符
     Semicolon ,     // ;
     Comma ,         // ,
-    Num ,           // 数字 浮点数
+    Number ,        // 数字 浮点数
     String ,        // 字符串
     Separator ,     // , ; [ ] { }
+    Assignment ,    // 赋值
+    Comparison ,    // 比较
 }
