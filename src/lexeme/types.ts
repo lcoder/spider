@@ -48,7 +48,8 @@ export const Separators = [
 
 
 export enum TokenType {
-    KeyWord,        // 关键字 var
+    Keyword,        // 关键字 var
+    Identifier ,    // 标识符
     Semicolon ,     // ;
     Comma ,         // ,
     Num ,           // 数字 浮点数

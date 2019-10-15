@@ -2,6 +2,7 @@
 
 
 export default class ReadBuffer {
+    state: number = 0
     start: number
     forward: number
     text: string
@@ -23,6 +24,9 @@ export default class ReadBuffer {
         return target
     }
     // 成功，移动start
+    forwardWithStart(){
+        this.start = this.forward
+    }
     // 失败，报错
 
 }

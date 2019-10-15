@@ -2,8 +2,10 @@ import React , { useState , useCallback } from 'react'
 import './App.css'
 import spider from "./spider"
 
+const defaultTxt = `var a = 2;`
+
 const App: React.FC = () => {
-    const [ text , setText ] = useState('var a = 2;');
+    const [ text , setText ] = useState(defaultTxt);
     const go2Transform = useCallback( () => {
             spider( text )
         } , [ text ] )
