@@ -15,7 +15,7 @@ export default class ReadBuffer {
     next(): string | Symbol | undefined {
         const size = this.text.length
         const { forward , text } = this
-        const end = forward === ( size - 1 )
+        const end = forward === size
         if ( end ) {
             this.forward++
             return EOF
