@@ -38,7 +38,7 @@ const scanner = ( text: string ) => {
         }
     }
     read.reset()
-    console.log( tokens )
+    return tokens
 }
 
 export default scanner;
