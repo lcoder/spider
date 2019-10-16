@@ -9,6 +9,7 @@ const scanner = ( text: string ) => {
     const tokens: any = []
     let char: string | undefined | Symbol
     let word: string = ''
+    tdAnalysis.forEach( td => td.reset() )
     while( (char = read.next()) !== undefined ) {
         let current: string = word
         const tmps = []

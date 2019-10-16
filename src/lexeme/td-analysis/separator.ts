@@ -1,6 +1,5 @@
 import { TokenType , Separators as sptrs } from "../types"
 import Token from "./token"
-import { EOF } from "../types"
 
 
 export default class Separator {
