@@ -29,8 +29,9 @@ export default class ReadBuffer {
         return target
     }
     // 成功，移动start
-    forwardWithStart(){
-        this.start = this.forward
+    fastForward(){
+        this.start = this.forward - 1
+        this.forward = this.start
     }
     reset(){
         this.start = 0

@@ -21,12 +21,17 @@ export default class Keyword {
                 }
                 break
             case 1:
-                const ifKeyWord = KeyWords.includes( current )
-                const isAlphaOrNum = alphaReg.test( char )
-                const notAlphaAndNum = !isAlphaOrNum
-                if ( ifKeyWord && notAlphaAndNum ) {
-                    this.reset()
-                    return new Token( TokenType.Keyword , current )
+                const isAlpha = alphaReg.test( char )
+                if ( isAlpha ) {
+                    // loop
+                } else {
+                    const ifKeyWord = KeyWords.includes( current )
+                    if ( ifKeyWord ) {
+                        this.reset()
+                        return new Token( TokenType.Keyword , current )
+                    } else {
+                        this.state = 0
+                    }
                 }
                 break
             default:

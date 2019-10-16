@@ -6,31 +6,37 @@ import { EOF } from "./types"
 
 const scanner = ( text: string ) => {
     const read = new ReadBuffer( text )
-    const tokens = []
+    const tokens: any = []
     let char: string | undefined | Symbol
     let word: string = ''
-
     while( (char = read.next()) !== undefined ) {
         let current: string = word
-        let flag = false
+        const tmps = []
         for( let i = 0 ; i < tdAnalysis.length ; i++ ) {
             const item = tdAnalysis[ i ]
             const tk = item.getToken( current , char )
             const hasToken = tk !== undefined
             if ( hasToken ) {
-                tokens.push( tk )
-                flag = true
-                break;
+                tmps.push( tk )
             }
         }
-        if ( flag ) {
-            word = ''
-            tdAnalysis.forEach( td => td.reset() )
+        const everyEnded = tdAnalysis.every( td => td.state === 0 )
+        if ( everyEnded ) {
+            let size = tmps.length ,
+                hasMembers = size > 0 ,
+                target = hasMembers ? tmps[ size - 1 ] : undefined
+            if ( target ) {
+                tokens.push( target )
+                word = ''
+                read.fastForward()
+                continue
+            }
         }
         if ( typeof char === 'string' ) {
             const charCode: number | undefined = char.codePointAt( 0 )
-            const ifWhiteSpace = isWhitespace( charCode as number )
-            if ( ifWhiteSpace ) {
+            const ifWhiteSpace = isWhitespace( charCode as number ) ,
+                isLineFeed = charCode === 10
+            if ( ifWhiteSpace || isLineFeed ) {
                 continue;
             }
         }
