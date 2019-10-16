@@ -22,7 +22,6 @@ export default class Numbers {
                 this.reset()
                 return new Token( TokenType.Number , current )
             }
-        // console.log( current , nextChar )
         switch( state ) {
             // 初始化
             case 0:

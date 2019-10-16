@@ -44,6 +44,8 @@ export const Separators = [
     ']' ,
     '{' ,
     '}' ,
+    '(' ,
+    ')' ,
 ]
 
 export const EOF = Symbol('EOF')
